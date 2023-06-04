@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_03_022415) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_03_150501) do
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "categoriable_type", null: false
+    t.integer "categoriable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["categoriable_type", "categoriable_id"], name: "index_categories_on_categoriable"
+  end
+
   create_table "streamers", force: :cascade do |t|
     t.string "username"
     t.datetime "created_at", null: false
